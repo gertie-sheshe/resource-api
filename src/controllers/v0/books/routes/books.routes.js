@@ -3,7 +3,7 @@ import controllers from "../books.controller.js";
 
 const router = Router();
 
-router.route("/").post(controllers.createOne).get(controllers.getAll);
+router.route("/").post(controllers.createBook).get(controllers.getAll);
 
 router
   .route("/:id")
