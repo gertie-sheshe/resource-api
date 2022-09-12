@@ -9,7 +9,7 @@ router.route("/").post(controllers.createOne).get(controllers.getAll);
 router
   .route("/:id")
   .get(controllers.getOne)
-  .delete(controllers.removeOne)
+  .delete(controllers.deleteUser)
   .put(controllers.updateOne);
 
 router.route("/:id/books").get(controllers.getUserBooks);
