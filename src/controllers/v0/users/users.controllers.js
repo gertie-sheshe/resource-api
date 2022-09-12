@@ -14,7 +14,7 @@ const getUserBooks = async (req, res) => {
     res.status(200).json({ data: user.books });
   } catch (e) {
     console.error(e);
-    res.status(400).end();
+    res.status(500).end();
   }
 };
 

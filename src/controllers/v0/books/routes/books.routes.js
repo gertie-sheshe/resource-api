@@ -8,7 +8,7 @@ router.route("/").post(controllers.createBook).get(controllers.getAll);
 router
   .route("/:id")
   .get(controllers.getOne)
-  .delete(controllers.removeOne)
+  .delete(controllers.deleteBook)
   .put(controllers.updateOne);
 
 export const BooksRouter = router;

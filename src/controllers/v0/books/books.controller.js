@@ -30,6 +30,27 @@ const createBook = async (req, res) => {
   }
 };
 
-const BookControllers = { createBook, ...crudControllers(Book) };
+const deleteBook = async (req, res) => {
+  // Find the user
+  const user = User.findById({ _id: req.query.userId }).lean();
+  // If no user
+  if (!user) {
+    return res.status(400).send("User not found");
+  }
+  if (user) {
+    // Delete the book
+    const book = await Book.findByIdAndDelete({ _id: req.params.id });
+    // remove from user's books
+    await User.findOneAndUpdate(
+      { _id: req.query.userId },
+      { $pull: { books: req.params.id } },
+      { new: true, useFindAndModify: false }
+    );
+
+    return res.status(201).json({ data: book });
+  }
+};
+
+const BookControllers = { createBook, deleteBook, ...crudControllers(Book) };
 
 export default BookControllers;
